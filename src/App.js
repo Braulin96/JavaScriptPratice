@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Repetition from "./components/Repetition";
+import TokenExample from "./components/TokenExample";
 
 function App() {
   const alertCompra = () => {
@@ -53,6 +55,8 @@ function App() {
           </>
         )}
       </div>
+      <Repetition className='pt-2' />
+      <TokenExample />
     </>
   );
 }
