@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Flower from '../assets/flower.png'
 
 const Repetition = () => {
   const [number, setNumber] = useState("");
@@ -8,32 +7,17 @@ const Repetition = () => {
     setNumber(e.target.value);
   };
 
-  const array = ["a", "b", "c", "d", "e"];
-  const renderedItems = array.map((item, index) => (
-    <p key={index}>Item {item}</p>
-  ));
-
   return (
-    <>
-      <div style={{ padding: "50px 0px 0px 50px" }}>Repetition</div>
+    <div className="p-5 bg-gray-200 w-[500px] rounded-2xl ">
+      <h1 className="text-2xl pb-2">Getting number inserted</h1>
       <input
+        className="p-2 rounded-md border-2 border-gray-300"
         type="number"
         onChange={handleNumberChange}
         placeholder="Insert a number"
       />
-      <p>o numero inserido foi {number}</p>
-
-      {renderedItems}
-    
-        <img className="flower"  src={Flower} alt="flower"/>
-     
-
-      
-
-      
-
-    
-    </>
+      <p className="pt-2">o numero inserido foi {number}</p>
+    </div>
   );
 };
 
