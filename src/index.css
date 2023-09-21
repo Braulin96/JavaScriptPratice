@@ -49,16 +49,7 @@ code {
   background-color: black;
   aspect-ratio: 2/1;
 }
-img{
-  
-  filter: grayscale(200%);
-  transition: all 5s ease-in-out;
 
-}
-
-img:hover{
-  filter: grayscale(50%);
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
