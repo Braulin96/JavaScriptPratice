@@ -47,8 +47,10 @@ const TokenExample = () => {
 	}
 
 	return (
-		<>
+		<div className='w-full text-center'>
+		 <h1 className="text-lg pb-2">Use this button to copy selected text</h1>
 			<button
+			  className="px-10 py-2 bg-gray-800 text-white rounded-3xl hover:bg-gray-700"
 				data-tooltip-id="my-tooltip"
 				data-tooltip-content={tooltipMessage}
 				size={20}
@@ -59,7 +61,7 @@ const TokenExample = () => {
 			</button>
 
 			<Tooltip id="my-tooltip" />
-		</>
+		</div>
 	)
 }
 
