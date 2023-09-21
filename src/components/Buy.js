@@ -23,7 +23,7 @@ const Buy = () => {
     <div className="p-5 bg-gray-200 w-[500px] rounded-2xl space-y-5">
       <div>
         <h1 className="text-2xl pb-2">Selecione o produto desejado</h1>
-        <select id="productSelect" onChange={handleProductChange}>
+        <select className="p-2 rounded-md border-2 border-gray-300" id="productSelect" onChange={handleProductChange}>
           <option value="">Selecione um Produto</option>
           <option value="batata">Batata</option>
           <option value="mandioca">Mandioca</option>
@@ -36,7 +36,7 @@ const Buy = () => {
             O produto selecionado foi {selectedProduct}
           </h2>
           <p>Selecione a ação desejada</p>
-          <select id="actionSelect" onChange={handleActionChange}>
+          <select  className="p-2 rounded-md border-2 border-gray-300" id="actionSelect" onChange={handleActionChange}>
             <option value="">Selecione uma Ação</option>
             <option value="compra">Compra</option>
             <option value="venda">Venda</option>
