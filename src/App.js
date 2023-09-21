@@ -5,12 +5,14 @@ import StylesImages from "./components/StylesImages";
 
 function App() {
   return (
-    <>
-      <Buy />
-      <Repetition />
-      <StylesImages />
+    <div className="">
+      <div className="flex flex-wrap p-5 w-full justify-around space-x-4 gap-5">
+        <Buy />
+        <Repetition />
+        <StylesImages />
+      </div>
       <TokenExample />
-    </>
+    </div>
   );
 }
 
