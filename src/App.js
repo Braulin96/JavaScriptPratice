@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     <Position />
-      {/*
+    
       <div className="flex flex-wrap p-5 w-full justify-around space-x-4 gap-5">
         <Buy />
         <Repetition />
@@ -18,7 +18,7 @@ function App() {
       <TokenExample />
       <FlexAndGrid />
 
-       */}
+    
     </>
   );
 }
