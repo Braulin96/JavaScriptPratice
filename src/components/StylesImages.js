@@ -7,7 +7,7 @@ const StylesImages = () => {
       <h1 className="text-2xl pb-5">Pass the mouse in the image bellow</h1>
       <img
         style={{ transition: "all 2s ease-in-out" }}
-        className="flower w-[400px] aspect-square rounded-3xl grayscale-[200%] hover:grayscale-[0]"
+        className="flower w-[400px] aspect-square mx-auto rounded-3xl grayscale-[200%] hover:grayscale-[0]"
         security=""
         src={Flower}
         alt="flower"
