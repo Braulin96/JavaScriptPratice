@@ -6,6 +6,8 @@ import Ferrari from "../assets/ferrari.jpeg";
 import Lamborgini from "../assets/lamborgini.jpeg";
 import RangeRover from "../assets/rangeRover.jpeg";
 
+
+// This component it is not responsive yet!
 const arrayTest = [
   {
     title: "Ferrari",
@@ -41,7 +43,7 @@ const Position = () => {
 
   return (
     <>
-      <div className="w-full h-screen bg-gray-900 relative">
+      <div className="w-full h-screen bg-gray-900 relative overflow-hidden">
         <div className="flex text-center   max-h-[900px] py-60 justify-center gap-10">
             <div className="bg-gray-800 flex items-center justify-around rounded-2xl w-[700px] aspect-square px-16 gap-3">
                 <ul className="space-y-5 flex-none">
@@ -61,11 +63,11 @@ const Position = () => {
                 {arrayTest[infoIndex].description}
                 </div>
             </div>
-            <div className="relative bg-gray-500 w-[800px] rounded-2xl flex justify-center items-center gap-7">
+            <div className="relative bg-gray-500 w-[800px] rounded-2xl flex justify-center items-center min-w-[700px]">
                 <div className="opacity-50 bg-gradient-to-tr from-gray-300 via-orange-400 to-orange-700 w-[50px] aspect-square rounded-full 
                 absolute z-10 right-5 top-5 ">
                 </div>
-                <div className="w-[600px] aspect-square">
+                <div className="w-[600px] aspect-square min-w-[300px]">
                 <img
                     className="rounded-3xl aspect-square grayscale shadow-md"
                     src={arrayTest[infoIndex].Image}
