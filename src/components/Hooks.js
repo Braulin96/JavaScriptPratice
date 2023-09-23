@@ -35,33 +35,33 @@ const Hooks = () => {
   };
 
   return (
-    <div className="p-5 text-center space-y-5">
-      <h1>Function training state, maps and objects</h1>
-      <div>
-        <ul className="names bg-green-200 px-5 py-10 space-y-2">
-          {actor.map((names, index) => (
-            <li
-              className={`${
-                info === index ? "text-orange-700" : "text-blue-500"
-              }`}
-              key={index}
-              onClick={() => handleChange(index)}
-            >
-              {names.name}
-            </li>
-          ))}
-        </ul>
-        <div className="description bg-blue-200 px-5 py-10">
-          {info >= 0
-            ? actor[info].description
-            : "Select an actor to see their description"}
+    <div className="p-5 text-center">
+        <h1>Function training state, maps and objects</h1>
+        <div className="px-2 py-5 text-center flex justify-center flex-wrap bg-gray-200 gap-5 overflow-hidden rounded-xl">
+            <div className="min-w-[300px] max-w-[500px] space-y-6 px-5 my-auto">
+                <div className="bg-gray-800 py-5 rounded-xl">
+                    <ul className="names space-y-2">
+                        {actor.map((names, index) => (
+                        <li
+                            className={`${
+                            info === index ? "text-cyan-500" : "text-white"
+                            }`}
+                            key={index}
+                            onClick={() => handleChange(index)}
+                        >
+                            {names.name}
+                        </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="description bg-gray-600 p-5 rounded-xl text-white text-left">
+                    {actor[info].description}
+                </div>
+            </div>
+            <div className="description rounded-xl px-5 min-w-[200px] w-auto max-w-[400px] py-5 bg-gray-900 flex justify-center ">
+            {<img className="rounded-xl aspect-square grayscale w-full max-w-full"  src={actor[info].Image} alt={actor[info].name} />}
+            </div>
         </div>
-        <div className="description bg-orange-200 px-5 py-10">
-          {info >= 0 ? (
-            <img src={actor[info].Image} alt={actor[info].name} />
-          ) : null}
-        </div>
-      </div>
     </div>
   );
 };
