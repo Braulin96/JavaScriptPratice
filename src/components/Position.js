@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import BlackListener from "../assets/blackListener.png";
-import Escutador from "../assets/escutador.png";
-import Mobile from "../assets/mobile.png";
 import Ferrari from "../assets/ferrari.jpeg";
 import Lamborgini from "../assets/lamborgini.jpeg";
 import RangeRover from "../assets/rangeRover.jpeg";
