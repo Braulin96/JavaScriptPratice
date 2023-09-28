@@ -16,7 +16,7 @@ const Hooks = () => {
     },
     {
       title: "Samsung",
-      descritpion: "Samsung Galaxy S9 é um smartphone com sistema operacional Android e da família Galaxy, produzido pela Samsung",
+      description: "Samsung Galaxy S9 é um smartphone com sistema operacional Android e da família Galaxy, produzido pela Samsung",
     },
   ];
 
@@ -39,7 +39,7 @@ const Hooks = () => {
             ))
            }
           </div>
-          <div className="bg-white rounded-xl p-10">Description goes here</div>
+          <div className="bg-white rounded-xl p-10">{mobile[number].description}</div>
         </div>
       </div>
     </>
