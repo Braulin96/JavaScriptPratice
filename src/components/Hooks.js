@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 
 const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
+  const [time, setTime]= useState ('')
 
   //get time 
-  const date = new Date ();
-  const clickTime = date.getHours() 
-  + ':' + date.getMinutes() 
-  + ":" + date.getSeconds(); 
+
+  const handleTime =() => {
+    const date = new Date ();
+    const clickTime = date.getHours() 
+    + ':' + date.getMinutes() 
+    + ":" + date.getSeconds(); 
+    setTime(clickTime)
+  }
+ 
 
   //to get the random image
   const fetchRandomImage = async () => {
@@ -39,17 +45,18 @@ const Hooks = () => {
         </div>
         <div className="text-center">
           <button
-            onClick={fetchRandomImage}
+            onClick={()=> {fetchRandomImage(); handleTime();}}
             className="bg-blue-400 font-bold text-white px-5 py-2 rounded-full"
           >
             Change photo
           </button>
         </div>
+        <p> time u clicked: {time}</p>
+
         <div className="flex justify-center">
           <p className=""> Here goes the array </p>
         </div>
-        <h1 align="center">Current Time</h1>
-            <h2 align="center"> {clickTime}</h2>
+        {console.log('clickTime:', time)}
       </div>
     </div>
   );
