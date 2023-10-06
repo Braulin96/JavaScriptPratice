@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
+import OpenModal from "./OpenModal";
 
 const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
   const [time, setTime] = useState("");
   const [dateArray, setDateArray] = useState([]);
   const [totalChanges, setTotalChanges] = useState(0);
+
+  //modal
+  const [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
 
   //send data to local store
   // Convert dateArray to JSON string and store it in localStorage
@@ -15,16 +25,15 @@ const Hooks = () => {
 
   //get time
   const handleTime = () => {
-    const date = new Date();
-    const clickTime =
-      date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-    setTime(clickTime);
-    //condition to push
-    dateArray.length > 0
-      ? setDateArray((prevArray) => [...prevArray, time])
-      : setDateArray([clickTime]);
-    setTotalChanges(totalChanges + 1);
-  };
+  const date = new Date();
+  const clickTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+  setTime(clickTime);
+  const updatedArray = dateArray.length > 0 ? [...dateArray, clickTime] : [clickTime];
+  setDateArray(updatedArray);
+  localStorage.setItem("dateArray", JSON.stringify(updatedArray)); // Update local storage
+  setTotalChanges(totalChanges + 1);
+};
+
 
   //to get suffix for ordinal number
   const getOrdinalSuffix = (number) => {
@@ -51,7 +60,7 @@ const Hooks = () => {
   return (
     <div className="flex justify-center py-10">
       <div className="p-20 space-y-5 bg-gray-100 rounded-2xl flex gap-10 w-[900px] overflow-scroll relative items-center justify-around">
-        <div className="space-y-10 my-auto z-20">
+        <div className="space-y-10 my-auto z-10">
           <div className="bg-blue-300 border-2 border-blue-00 rounded-full w-72 aspect-square mx-auto flex justify-center items-center overflow-hidden">
             {randomImage && (
               <img
@@ -71,28 +80,45 @@ const Hooks = () => {
             </p>
           )}
         </div>
-        <div className="space-y-4 z-20">
+        <div className="space-y-4">
           <p className="text-2xl text-white font-bold text-center">
             Times of change
           </p>
-          <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] aspect-square relative">
+          <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] aspect-square relative z-10">
             <div className="py-5 text-center relative">
-              <p className="py-2 text-gray-600 ">
-                Your last change was made at <span className="font-bold"> {storedDateArray[storedDateArray.length - 1]} </span> 
+              <p className="py-2 text-gray-600">
+                {storedDateArray.length > 0
+                  ? `Your last change was made at ${
+                      storedDateArray[storedDateArray.length - 1]
+                    }`
+                  : "No changes made yet!"}
               </p>
+              <OpenModal
+                className="pt-10 underline"
+                isOpen={isOpen}
+                closeModal={closeModal}
+                title="Complete list"
+                handleOpen={handleOpen}
+                description={storedDateArray.map((array, index) => (
+                  <p key={index}>
+                    the change number {index + 1} was made {array}
+                  </p>
+              ))}
+              />
             </div>
+
             <button
               onClick={() => {
                 fetchRandomImage();
                 handleTime();
               }}
-              className="bg-gray-600 font-bold text-white  py-3 text-sm shadow-2xl w-full bottom-0 absolute"
+              className="bg-gray-600 font-bold text-white py-3 text-sm shadow-2xl w-full bottom-0 absolute"
             >
               Change photo
             </button>
           </div>
         </div>
-        <div className="h-full w-[645px] bg-gray-400 absolute right-0 -top-5 opacity-75 z-10"></div>
+        <div className="h-full w-[645px] bg-gray-400 absolute right-0 -top-5 opacity-75 z-0"></div>
       </div>
     </div>
   );
