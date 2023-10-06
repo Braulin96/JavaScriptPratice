@@ -4,6 +4,7 @@ const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
   const [time, setTime] = useState("");
   const [dateArray, setDateArray] = useState([]);
+  const [totalChanges, setTotalChanges] = useState(0);
 
   //get time
   const handleTime = () => {
@@ -15,7 +16,9 @@ const Hooks = () => {
     dateArray.length > 0
       ? setDateArray((prevArray) => [...prevArray, time])
       : setDateArray([clickTime]);
+    setTotalChanges(totalChanges + 1);
   };
+
   //to get suffix for ordinal number
   const getOrdinalSuffix = (number) => {
     const suffixes = ["th", "st", "nd", "rd"];
@@ -40,9 +43,9 @@ const Hooks = () => {
 
   return (
     <div className="flex justify-center py-10">
-      <div className="p-20 space-y-5 bg-slate-100 w-fit rounded-2xl flex gap-10 max-h-[400px] min-w-[600px] overflow-scroll">
+      <div className="p-20 space-y-5 bg-cyan-900 rounded-2xl flex gap-10 h-[500px] w-[900px] overflow-scroll relative items-center justify-center">
         <div className="space-y-5 my-auto">
-          <div className="bg-blue-300 border-2 border-blue-00 rounded-full w-36 aspect-square mx-auto flex justify-center items-center overflow-hidden">
+          <div className="bg-blue-300  border-2 border-blue-00 rounded-full w-72 aspect-square mx-auto flex justify-center items-center overflow-hidden">
             {randomImage && (
               <img
                 className="w-full h-full object-cover"
@@ -59,19 +62,26 @@ const Hooks = () => {
                 fetchRandomImage();
                 handleTime();
               }}
-              className="bg-blue-400 font-bold text-white px-5 py-2 rounded-full"
+              className="bg-white font-bold text-gray-900 px-4 py-2 rounded-full text-sm shadow-2xl"
             >
               Change photo
             </button>
+            {totalChanges > 0 && (
+              <p className="absolute bottom-4 left-4 text-gray-900">
+                Total of changes:
+                <span className="pl-1 text-white">{totalChanges}</span>
+              </p>
+            )}
           </div>
         </div>
-
-        <div className="justify-center">
-          <p className="text-xl"> Times of change </p>
+        <div className="bg-gray-900 p-5 overflow-scroll text-center rounded-xl w-[300px] h-[250px]">
+          <p className="text-xl text-white font-bold"> Times of change </p>
           {dateArray.map((times, index) => (
-            <p key={index} className="py-2 flex">
-              The {getOrdinalSuffix(index + 1)} change was made at {times}
-            </p>
+            <>
+              <p key={index} className="py-2 text-white ">
+                {getOrdinalSuffix(index + 1)} change at {times}
+              </p>
+            </>
           ))}
         </div>
       </div>
