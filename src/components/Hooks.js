@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 
 const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
-  const [time, setTime]= useState ('')
-
-  //get time 
-
-  const handleTime =() => {
-    const date = new Date ();
-    const clickTime = date.getHours() 
-    + ':' + date.getMinutes() 
-    + ":" + date.getSeconds(); 
-    setTime(clickTime)
-  }
+  const [time, setTime] = useState("");
+  const [dateArray, setDateArray] = useState([]);
+ useEffect(()=>
+ { console.log("lenght array:", dateArray.length)})
  
+  //get time
+  const handleTime = () => {
+    const date = new Date();
+    const clickTime =
+      date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    setTime(clickTime);
+  };
 
   //to get the random image
   const fetchRandomImage = async () => {
@@ -25,10 +25,13 @@ const Hooks = () => {
     } catch (error) {
       console.error("Error fetching random image:", error);
     }
+    setDateArray((prevArray) => [...prevArray, time]);
   };
   useEffect(() => {
     fetchRandomImage();
   }, []);
+
+
 
   return (
     <div className="flex justify-center py-10">
@@ -45,7 +48,10 @@ const Hooks = () => {
         </div>
         <div className="text-center">
           <button
-            onClick={()=> {fetchRandomImage(); handleTime();}}
+            onClick={() => {
+              fetchRandomImage();
+              handleTime();
+            }}
             className="bg-blue-400 font-bold text-white px-5 py-2 rounded-full"
           >
             Change photo
@@ -55,8 +61,10 @@ const Hooks = () => {
 
         <div className="flex justify-center">
           <p className=""> Here goes the array </p>
+          {dateArray.map((times, index)=>
+          <p key={index} className="py-2 flex"> time was {times} </p>
+          )}
         </div>
-        {console.log('clickTime:', time)}
       </div>
     </div>
   );
