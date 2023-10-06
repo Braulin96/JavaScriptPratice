@@ -4,8 +4,6 @@ const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
   const [time, setTime] = useState("");
   const [dateArray, setDateArray] = useState([]);
- useEffect(()=>
- { console.log("lenght array:", dateArray.length)})
  
   //get time
   const handleTime = () => {
@@ -13,7 +11,9 @@ const Hooks = () => {
     const clickTime =
       date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     setTime(clickTime);
-  };
+    //condition to push 
+    dateArray.length > 0 ? setDateArray((prevArray) => ([...prevArray, time])) : setDateArray([clickTime])
+  }
 
   //to get the random image
   const fetchRandomImage = async () => {
@@ -25,14 +25,11 @@ const Hooks = () => {
     } catch (error) {
       console.error("Error fetching random image:", error);
     }
-    setDateArray((prevArray) => [...prevArray, time]);
   };
   useEffect(() => {
     fetchRandomImage();
   }, []);
-
-
-
+  
   return (
     <div className="flex justify-center py-10">
       <div className="p-20 space-y-5 bg-slate-100 w-fit rounded-2xl">
