@@ -64,12 +64,10 @@ const Hooks = () => {
             </p>
           )}
         </div>
-        <div className="space-y-10 z-20">
-          <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] relative">
-            <div className="py-5 px-10 relative">
-              <p className="text-2xl text-gray-600 font-bold">
-                Times of change
-              </p>
+        <div className="space-y-4 z-20">
+          <p className="text-2xl text-white font-bold text-center">Times of change</p>
+          <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] aspect-square relative">
+            <div className="py-5 text-center relative">
               {dateArray.map((times, index) => (
                 <>
                   <p key={index} className="py-2 text-gray-600 ">
@@ -83,7 +81,7 @@ const Hooks = () => {
                 fetchRandomImage();
                 handleTime();
               }}
-              className="bg-gray-600 font-bold text-white px-4 py-3 text-sm shadow-2xl w-full bottom-0 absolute"
+              className="bg-gray-600 font-bold text-white  py-3 text-sm shadow-2xl w-full bottom-0 absolute"
             >
               Change photo
             </button>
