@@ -7,12 +7,11 @@ const Hooks = () => {
   const [totalChanges, setTotalChanges] = useState(0);
 
   //send data to local store
-// Convert dateArray to JSON string and store it in localStorage
-localStorage.setItem('dateArray', JSON.stringify(dateArray));
-//retrieve the array from localStorage use JSON.parse() to convert the JSON string back to a JavaScript object:
-const storedDateArray = JSON.parse(localStorage.getItem('dateArray'));
-console.log('Stored Date Array:', storedDateArray);
-
+  // Convert dateArray to JSON string and store it in localStorage
+  localStorage.setItem("dateArray", JSON.stringify(dateArray));
+  //retrieve the array from localStorage use JSON.parse() to convert the JSON string back to a JavaScript object:
+  const storedDateArray = JSON.parse(localStorage.getItem("dateArray"));
+  console.log("Stored Date Array:", storedDateArray);
 
   //get time
   const handleTime = () => {
@@ -73,16 +72,14 @@ console.log('Stored Date Array:', storedDateArray);
           )}
         </div>
         <div className="space-y-4 z-20">
-          <p className="text-2xl text-white font-bold text-center">Times of change</p>
+          <p className="text-2xl text-white font-bold text-center">
+            Times of change
+          </p>
           <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] aspect-square relative">
             <div className="py-5 text-center relative">
-              {storedDateArray.map((times, index) => (
-                <>
-                  <p key={index} className="py-2 text-gray-600 ">
-                    {getOrdinalSuffix(index + 1)} change at {times}
-                  </p>
-                </>
-              ))}
+              <p className="py-2 text-gray-600 ">
+                Your last change was made at <span className="font-bold"> {storedDateArray[storedDateArray.length - 1]} </span> 
+              </p>
             </div>
             <button
               onClick={() => {
