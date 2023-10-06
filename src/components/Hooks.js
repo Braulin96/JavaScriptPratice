@@ -43,8 +43,8 @@ const Hooks = () => {
 
   return (
     <div className="flex justify-center py-10">
-      <div className="p-20 space-y-5 bg-gray-100 rounded-2xl flex gap-10  w-[900px] overflow-scroll relative items-center justify-around">
-        <div className="space-y-10 my-auto">
+      <div className="p-20 space-y-5 bg-gray-100 rounded-2xl flex gap-10 w-[900px] overflow-scroll relative items-center justify-around">
+        <div className="space-y-10 my-auto z-20">
           <div className="bg-blue-300 border-2 border-blue-00 rounded-full w-72 aspect-square mx-auto flex justify-center items-center overflow-hidden">
             {randomImage && (
               <img
@@ -56,36 +56,40 @@ const Hooks = () => {
             {!randomImage && <p>Loading random image...</p>}
           </div>
           <div className="bg-gray-900 w-full h-4 blur-xl rounded-full"></div>
+
+          {totalChanges > 0 && (
+            <p className="absolute bottom-4 left-4 text-gray-900">
+              Total of changes:
+              <span className="pl-1">{totalChanges}</span>
+            </p>
+          )}
         </div>
-        <div className="space-y-10">
-          <div className="bg-white p-5 overflow-scroll text-left rounded-xl px-10 h-[250px]">
-            <p className="text-2xl text-gray-600 font-bold"> Times of change </p>
-            {dateArray.map((times, index) => (
-              <>
-                <p key={index} className="py-2 text-gray-600 ">
-                  {getOrdinalSuffix(index + 1)} change at {times}
-                </p>
-              </>
-            ))}
-          </div>
-          <div className="text-center">
+        <div className="space-y-10 z-20">
+          <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] relative">
+            <div className="py-5 px-10 relative">
+              <p className="text-2xl text-gray-600 font-bold">
+                Times of change
+              </p>
+              {dateArray.map((times, index) => (
+                <>
+                  <p key={index} className="py-2 text-gray-600 ">
+                    {getOrdinalSuffix(index + 1)} change at {times}
+                  </p>
+                </>
+              ))}
+            </div>
             <button
               onClick={() => {
                 fetchRandomImage();
                 handleTime();
               }}
-              className="bg-gray-600 font-bold text-white px-4 py-2 rounded-full text-sm shadow-2xl"
+              className="bg-gray-600 font-bold text-white px-4 py-3 text-sm shadow-2xl w-full bottom-0 absolute"
             >
               Change photo
             </button>
-            {totalChanges > 0 && (
-              <p className="absolute bottom-4 left-4 text-gray-900">
-                Total of changes:
-                <span className="pl-1">{totalChanges}</span>
-              </p>
-            )}
           </div>
         </div>
+        <div className="h-full w-[645px] bg-gray-400 absolute right-0 -top-5 opacity-75 z-10"></div>
       </div>
     </div>
   );
