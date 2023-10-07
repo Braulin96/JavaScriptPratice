@@ -5,9 +5,11 @@ const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
   const [time, setTime] = useState("");
   //operator (??) to provide an empty array as a default value if dateArray is null.
-  const [dateArray, setDateArray] = useState(JSON.parse(localStorage.getItem("dateArray")) ?? []);
-
+  const [dateArray, setDateArray] = useState(
+    JSON.parse(localStorage.getItem("dateArray")) ?? []
+  );
   const [totalChanges, setTotalChanges] = useState(dateArray.length);
+  const [cleanArray, setCleanArray] = useState(false);
 
   //modal
   const [isOpen, setIsOpen] = useState(false);
@@ -18,29 +20,31 @@ const Hooks = () => {
     setIsOpen(true);
   };
 
-  //send data to local store
-  // Convert dateArray to JSON string and store it in localStorage
+  const handleCleaning = () => {
+    localStorage.clear();
+    setDateArray([]); // Reinitialize dateArray to an empty array
+    setTotalChanges(0); // Reset totalChanges to 0
+  };
 
 
   //get time
   const handleTime = () => {
-  const date = new Date();
-  const clickTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-  setTime(clickTime);
-  const updatedArray = dateArray.length > 0 ? [...dateArray, clickTime] : [clickTime];
-  setDateArray(updatedArray);
-  //localStorage.setItem("dateArray", JSON.stringify(updatedArray)); // Update local storage
-  setTotalChanges(totalChanges + 1);
+    const date = new Date();
+    const clickTime =
+      date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    setTime(clickTime);
+    const updatedArray =
+      dateArray.length > 0 ? [...dateArray, clickTime] : [clickTime];
+    setDateArray(updatedArray);
+    //localStorage.setItem("dateArray", JSON.stringify(updatedArray)); // Update local storage
+    setTotalChanges(totalChanges + 1);
 
-  localStorage.setItem("dateArray", JSON.stringify(dateArray));
-//retrieve the array from localStorage use JSON.parse() to convert the JSON string back to a JavaScript object:
+    localStorage.setItem("dateArray", JSON.stringify(dateArray));
+    //retrieve the array from localStorage use JSON.parse() to convert the JSON string back to a JavaScript object:
 
-  //console.log("Stored Date Array:", storedDateArray);
-};
-//const storedDateArray = JSON.parse(localStorage.getItem("dateArray"));
-
-
-
+    //console.log("Stored Date Array:", storedDateArray);
+  };
+  //const storedDateArray = JSON.parse(localStorage.getItem("dateArray"));
 
   //to get suffix for ordinal number
   const getOrdinalSuffix = (number) => {
@@ -96,7 +100,7 @@ const Hooks = () => {
               <p className="py-2 text-gray-600">
                 {dateArray.length > 0
                   ? `Your last change was made at ${
-                    dateArray[dateArray.length - 1]
+                      dateArray[dateArray.length - 1]
                     }`
                   : "No changes made yet!"}
               </p>
@@ -110,8 +114,14 @@ const Hooks = () => {
                   <p key={index}>
                     the change number {index + 1} was made {array}
                   </p>
-              ))}
+                ))}
               />
+              <button
+                onClick={handleCleaning}
+                className="bg-green-400 rounded-2xl px-3 py-2"
+              >
+                Clear history
+              </button>
             </div>
 
             <button
