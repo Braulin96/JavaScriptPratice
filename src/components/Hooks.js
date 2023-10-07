@@ -4,8 +4,10 @@ import OpenModal from "./OpenModal";
 const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
   const [time, setTime] = useState("");
-  const [dateArray, setDateArray] = useState(JSON.parse(localStorage.getItem("dateArray")));
-  const [totalChanges, setTotalChanges] = useState(0);
+  //operator (??) to provide an empty array as a default value if dateArray is null.
+  const [dateArray, setDateArray] = useState(JSON.parse(localStorage.getItem("dateArray")) ?? []);
+
+  const [totalChanges, setTotalChanges] = useState(dateArray.length);
 
   //modal
   const [isOpen, setIsOpen] = useState(false);
