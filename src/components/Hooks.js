@@ -9,7 +9,6 @@ const Hooks = () => {
     JSON.parse(localStorage.getItem("dateArray")) ?? []
   );
   const [totalChanges, setTotalChanges] = useState(dateArray.length);
-  const [cleanArray, setCleanArray] = useState(false);
 
   //modal
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +24,6 @@ const Hooks = () => {
     setDateArray([]); // Reinitialize dateArray to an empty array
     setTotalChanges(0); // Reset totalChanges to 0
   };
-
 
   //get time
   const handleTime = () => {
@@ -44,14 +42,20 @@ const Hooks = () => {
 
     //console.log("Stored Date Array:", storedDateArray);
   };
+
+  useEffect(() => {
+    // Save dateArray to localStorage whenever it changes
+    localStorage.setItem("dateArray", JSON.stringify(dateArray));
+  }, [dateArray]);
   //const storedDateArray = JSON.parse(localStorage.getItem("dateArray"));
 
   //to get suffix for ordinal number
+  /*
   const getOrdinalSuffix = (number) => {
     const suffixes = ["th", "st", "nd", "rd"];
     const v = number % 100;
     return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
-  };
+  }; */
 
   //to get the random image
   const fetchRandomImage = async () => {
@@ -66,7 +70,7 @@ const Hooks = () => {
   };
   useEffect(() => {
     fetchRandomImage();
-  }, []);
+  }, [time]);
 
   return (
     <div className="flex justify-center py-10">
@@ -110,18 +114,13 @@ const Hooks = () => {
                 closeModal={closeModal}
                 title="Complete list"
                 handleOpen={handleOpen}
+                cleanup={<button className="underline" onClick={handleCleaning}>{dateArray.length > 0 ? 'clear':'' } </button>}
                 description={dateArray.map((array, index) => (
                   <p key={index}>
                     the change number {index + 1} was made {array}
                   </p>
                 ))}
               />
-              <button
-                onClick={handleCleaning}
-                className="bg-green-400 rounded-2xl px-3 py-2"
-              >
-                Clear history
-              </button>
             </div>
 
             <button

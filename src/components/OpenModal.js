@@ -1,7 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { cleanup } from '@testing-library/react'
 import { Fragment } from 'react'
 
-const OpenModal= ({isOpen,  title, description, className}) => {
+const OpenModal= ({isOpen, closeModal, title, description, handleOpen, className, cleanup}) => {
   return (
     <>
         <div className={`inset-0 flex  ${className}`}>
@@ -15,7 +16,7 @@ const OpenModal= ({isOpen,  title, description, className}) => {
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" >
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -52,14 +53,15 @@ const OpenModal= ({isOpen,  title, description, className}) => {
                     </p>
                   </div>
 
-                  <div className="mt-4">
+                  <div className="mt-4 flex relative justify-between">
                     <button
                       type="button"
-                      className="inline-flex justify-center bg-gray-500 text-white font-bold rounded-md border border-transparent  px-4 py-2 text-sm"
+                      className="inline-flex justify-center bg-gray-500 rounded-md border border-transparent  px-4 py-2 text-sm font-medium"
                       onClick={closeModal}
                     >
                       Close
                     </button>
+                    <div className='underline absolute bottom-0 right-0'>{cleanup}</div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
