@@ -4,7 +4,7 @@ import OpenModal from "./OpenModal";
 const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
   const [time, setTime] = useState("");
-  const [dateArray, setDateArray] = useState([]);
+  const [dateArray, setDateArray] = useState(JSON.parse(localStorage.getItem("dateArray")));
   const [totalChanges, setTotalChanges] = useState(0);
 
   //modal
@@ -18,10 +18,7 @@ const Hooks = () => {
 
   //send data to local store
   // Convert dateArray to JSON string and store it in localStorage
-  localStorage.setItem("dateArray", JSON.stringify(dateArray));
-  //retrieve the array from localStorage use JSON.parse() to convert the JSON string back to a JavaScript object:
-  const storedDateArray = JSON.parse(localStorage.getItem("dateArray"));
-  console.log("Stored Date Array:", storedDateArray);
+
 
   //get time
   const handleTime = () => {
@@ -30,9 +27,17 @@ const Hooks = () => {
   setTime(clickTime);
   const updatedArray = dateArray.length > 0 ? [...dateArray, clickTime] : [clickTime];
   setDateArray(updatedArray);
-  localStorage.setItem("dateArray", JSON.stringify(updatedArray)); // Update local storage
+  //localStorage.setItem("dateArray", JSON.stringify(updatedArray)); // Update local storage
   setTotalChanges(totalChanges + 1);
+
+  localStorage.setItem("dateArray", JSON.stringify(dateArray));
+//retrieve the array from localStorage use JSON.parse() to convert the JSON string back to a JavaScript object:
+
+  //console.log("Stored Date Array:", storedDateArray);
 };
+//const storedDateArray = JSON.parse(localStorage.getItem("dateArray"));
+
+
 
 
   //to get suffix for ordinal number
@@ -87,9 +92,9 @@ const Hooks = () => {
           <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] aspect-square relative z-10">
             <div className="py-5 text-center relative">
               <p className="py-2 text-gray-600">
-                {storedDateArray.length > 0
+                {dateArray.length > 0
                   ? `Your last change was made at ${
-                      storedDateArray[storedDateArray.length - 1]
+                    dateArray[dateArray.length - 1]
                     }`
                   : "No changes made yet!"}
               </p>
@@ -99,7 +104,7 @@ const Hooks = () => {
                 closeModal={closeModal}
                 title="Complete list"
                 handleOpen={handleOpen}
-                description={storedDateArray.map((array, index) => (
+                description={dateArray.map((array, index) => (
                   <p key={index}>
                     the change number {index + 1} was made {array}
                   </p>
