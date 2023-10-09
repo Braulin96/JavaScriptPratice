@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ContextTest from "./shared/ContextTest";
+import RefText from "./shared/RefText";
 
 // In this component the training is about useState useContext, useRef and useReducer
 
@@ -23,6 +24,7 @@ const MoreHooks = () => {
 
   return (
     <>
+    <RefText/>
       <ThemeContext.Provider value={array}>
         <p className="text-xl font-bold text-center py-2">
           Input testing useState and useContext
@@ -56,7 +58,9 @@ const MoreHooks = () => {
           </div>
         </div>
         </div>
+        
       </ThemeContext.Provider>
+      
     </>
   );
 };
