@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import OpenModal from "./OpenModal";
 
+//this component training about useState, useEffect, map, array and localStorage
 const Hooks = () => {
   const [randomImage, setRandomImage] = useState("");
   const [time, setTime] = useState("");

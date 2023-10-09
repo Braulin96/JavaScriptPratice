@@ -5,10 +5,13 @@ import StylesImages from "./components/StylesImages";
 import FlexAndGrid from "./components/FlexAndGrid";
 import Position from "./components/Position";
 import Hooks from "./components/Hooks";
+import MoreHooks from "./components/MoreHooks";
+
 
 function App() {
   return (
     <>
+    <MoreHooks />
     <Hooks/>
     <Position />
       <div className="flex flex-wrap p-5 w-full justify-around space-x-4 gap-5">
