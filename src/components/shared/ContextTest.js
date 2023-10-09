@@ -1,13 +1,18 @@
-import React, { useContext } from "react"
-import { ThemeContext } from "../MoreHooks"
+import React, { useContext } from "react";
+import { ThemeContext } from "../MoreHooks";
 
+//this component is getting a context passed from MoreHooks.js component
 const ContextTest = () => {
-    const name = useContext (ThemeContext)
+  //const number = useContext (ThemeContext)
+  const array = useContext(ThemeContext);
   return (
     <>
-       <div>ContextTest</div>
-       <p>{name} </p>
-    </> 
-  ) 
-}
-export default ContextTest
+      <div>Get the values from array create in More</div>
+      {console.log("arrayContext:", { array })}
+      {array.map((code, index) => (
+        <p key={index}> the code you chose was {code}</p>
+      ))}
+    </>
+  );
+};
+export default ContextTest;

@@ -4,6 +4,7 @@ import ContextTest from "./shared/ContextTest";
 // In this component the training is about use Context, use ref and useReducer
 
 //export const ThemeContext = React.createContext();
+export const ThemeContext = React.createContext();
 
 const MoreHooks = () => {
   //const [number, setNumber] = useState(0);
@@ -35,7 +36,7 @@ const MoreHooks = () => {
         </button>
         <ContextTest />
          </ThemeContext.Provider>*/}
-      <div>
+      <ThemeContext.Provider value={array}>
         <p className="text-xl font-bold">
           Input testing useState and useContext
         </p>
@@ -47,7 +48,10 @@ const MoreHooks = () => {
             placeholder="insert your code"
           />
           <button
-            onClick={() => {setFinal(value); setValue("")}}
+            onClick={() => {
+              setFinal(value);
+              setValue("");
+            }}
             className="bg-green-200 rounded-full px-3 py-2"
           >
             click me
@@ -57,7 +61,8 @@ const MoreHooks = () => {
           {console.log("value:", value)}
           {console.log("updatedArray:", array)}
         </div>
-      </div>
+        <ContextTest />
+      </ThemeContext.Provider>
     </>
   );
 };
