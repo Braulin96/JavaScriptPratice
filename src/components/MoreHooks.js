@@ -6,15 +6,16 @@ import ContextTest from "./shared/ContextTest";
 export const ThemeContext = React.createContext();
 
 const MoreHooks = () => {
-  const [addNumber, setAddNumber] = useState(0);
+  const [number, setNumber] = useState(0);
+  
 
   return (
     <>
-      <ThemeContext.Provider value={addNumber}>
+      <ThemeContext.Provider value={number}>
         <div>MoreHooks</div>
         <button
           className="bg-green-500 px-2 py-2"
-          onClick={() => setAddNumber(addNumber + 1)}
+          onClick={() => setNumber(number + 1)}
         >
           increase
         </button>
