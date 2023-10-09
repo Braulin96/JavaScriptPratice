@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import ContextTest from "./shared/ContextTest";
 
-// In this component the training is about use Context, use ref and useReducer
+// In this component the training is about useState useContext, useRef and useReducer
 
 //export const ThemeContext = React.createContext();
 export const ThemeContext = React.createContext();
@@ -15,8 +15,6 @@ const MoreHooks = () => {
   const handleNumber = (e) => {
     setValue(e.target.value);
   };
-
-  // Update the array whenever the final value changes
   useEffect(() => {
     if (final !== "") {
       setArray((prevArray) => [...prevArray, final]);
@@ -25,43 +23,39 @@ const MoreHooks = () => {
 
   return (
     <>
-      {/*}
-      <ThemeContext.Provider value={number}>
-        <div>MoreHooks</div>
-        <button
-          className="bg-green-500 px-2 py-2"
-          onClick={() => setNumber(number + 1)}
-        >
-          increase
-        </button>
-        <ContextTest />
-         </ThemeContext.Provider>*/}
       <ThemeContext.Provider value={array}>
-        <p className="text-xl font-bold">
+        <p className="text-xl font-bold text-center py-2">
           Input testing useState and useContext
         </p>
-        <div className="p-5">
-          <input
-            onChange={handleNumber}
-            className="border border-blue-600 px-3 py-2"
-            type="number"
-            placeholder="insert your code"
-          />
-          <button
-            onClick={() => {
-              setFinal(value);
-              setValue("");
-            }}
-            className="bg-green-200 rounded-full px-3 py-2"
-          >
-            click me
-          </button>
+        <div className="flex justify-center">
+        <div className="flex justify-center bg-gradient-to-br from-slate-600 via-cyan-200 to-gray-700 rounded-xl w-fit px-10 py-5">
+          <div className="p-5 space-y-5">
+            <div>
+              <input
+                onChange={handleNumber}
+                className="border border-gray-500 rounded-md px-3 py-2"
+                type="number"
+                placeholder="insert your code"
+              />
+            </div>
 
-          {console.log("final:", final)}
-          {console.log("value:", value)}
-          {console.log("updatedArray:", array)}
+            <div>
+              <button
+                onClick={() => {
+                  setFinal(value);
+                  setValue("");
+                }}
+                className="bg-white rounded-full px-3 py-2 text-cyan-900 font-bold"
+              >
+                click me
+              </button>
+            </div>
+          </div>
+          <div className="py-2">
+            <ContextTest />
+          </div>
         </div>
-        <ContextTest />
+        </div>
       </ThemeContext.Provider>
     </>
   );

@@ -7,11 +7,12 @@ const ContextTest = () => {
   const array = useContext(ThemeContext);
   return (
     <>
-      <div>Get the values from array create in More</div>
-      {console.log("arrayContext:", { array })}
+      <h1 className="font-bold text-lg">Get the values from array create in More</h1>
+     <div className="bg-gray-400 px-5 py-3 rounded-xl mt-3">
       {array.map((code, index) => (
-        <p key={index}> the code you chose was {code}</p>
+        <p className="text-left" key={index}> code: {code} key: {index}</p>
       ))}
+      </div>
     </>
   );
 };
