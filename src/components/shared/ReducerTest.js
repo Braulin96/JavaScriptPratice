@@ -1,6 +1,4 @@
-import React, {useReducer, useState} from 'react'
-import { act } from 'react-dom/test-utils'
-
+import React, {useReducer} from 'react'
 
 const reducer = (state, action) => {
     switch(action.type){
@@ -36,7 +34,6 @@ const ReducerTest = () => {
         <p> {state.count} </p>
         <button onClick={handleClick}>Clique</button>
         {state.showText && <p> Welcome to ReducerTest </p>}
-
     
     </div>
   )}

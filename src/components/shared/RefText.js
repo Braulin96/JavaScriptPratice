@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
 const RefText = () => {
-  //const inputRef = useRef();
-  //const count = useRef(0);
   const [count, setCount] = useState(0);
   const [number, setNumber] = useState(0);
 
