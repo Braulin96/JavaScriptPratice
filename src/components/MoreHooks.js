@@ -25,8 +25,8 @@ const MoreHooks = () => {
 
   return (
     <>
-      <ReducerTest />
-      <RefText />
+      {/* <ReducerTest />
+      <RefText /> */}
       <ThemeContext.Provider value={array}>
         <p className="text-xl font-bold text-center py-2">
           Input testing useState and useContext

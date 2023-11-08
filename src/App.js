@@ -6,11 +6,15 @@ import FlexAndGrid from "./components/FlexAndGrid";
 import Position from "./components/Position";
 import Hooks from "./components/Hooks";
 import MoreHooks from "./components/MoreHooks";
+import Contexts from "./components/Contexts";
+import Layout from "./components/Layout";
 
 
 function App() {
   return (
     <>
+    <Layout/>
+    {/* <Contexts /> */}
     <MoreHooks />
     <Hooks/>
     <Position />
