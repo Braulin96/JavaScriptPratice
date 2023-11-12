@@ -8,11 +8,13 @@ import Hooks from "./components/Hooks";
 import MoreHooks from "./components/MoreHooks";
 import Contexts from "./components/Contexts";
 import Layout from "./components/Layout";
+import TestTypeScript from "./components/shared/typeScript/TestTypeScript";
 
 
 function App() {
   return (
     <>
+    <TestTypeScript />
     <Layout/>
     {/* <Contexts /> */}
     <MoreHooks />
