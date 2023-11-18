@@ -9,12 +9,17 @@ import MoreHooks from "./components/MoreHooks";
 import Contexts from "./components/Contexts";
 import Layout from "./components/Layout";
 import TestTypeScript from "./components/shared/typeScript/TestTypeScript";
+import StringMethod from "./components/shared/StringMethod";
+import ArrayMethod from "./components/shared/ArrayMethod";
+
 
 
 function App() {
   return (
     <>
-    <TestTypeScript />
+    <ArrayMethod/>
+    {/* <StringMethod /> */}
+    {/* <TestTypeScript /> */}
     <Layout/>
     {/* <Contexts /> */}
     <MoreHooks />
