@@ -20,7 +20,7 @@ const Animation = () => {
           </span>
         </div>
         <div data-aos="fade-right" className="w-20 aspect-square bg-green-400 rounded-sm "> jdjds</div>
-        <div data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600"></div>
+        <div className='bg-red-300 w-20 aspect-square' data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600"></div>
       </div>
     </div>
   );

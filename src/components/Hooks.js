@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import OpenModal from "./OpenModal";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import the AOS styles
+
+// Initialize AOS
+AOS.init();
 
 //this component training about useState, useEffect, map, array and localStorage
 const Hooks = () => {
@@ -76,8 +81,9 @@ const Hooks = () => {
   return (
     <div className="flex justify-center py-10">
       <div className="p-20 space-y-5 bg-gray-100 rounded-2xl flex gap-10 w-[900px] overflow-scroll relative items-center justify-around">
-        <div className="space-y-10 my-auto z-10">
-          <div className="bg-blue-300 border-2 border-blue-00 rounded-full w-72 aspect-square mx-auto flex justify-center items-center overflow-hidden">
+        {/* Image loading section */}
+        <div  className="space-y-10 my-auto z-10">
+          <div data-aos="zoom-in" data-aos-offset="500" data-aos-once="false" data-aos-delay="200" data-aos-duration="500" className="border-2 border-gray-600 rounded-full w-72 aspect-square mx-auto flex justify-center items-center overflow-hidden">
             {randomImage && (
               <img
                 className="w-full h-full object-cover"
@@ -97,9 +103,7 @@ const Hooks = () => {
           )}
         </div>
         <div className="space-y-4">
-          <p className="text-2xl text-white font-bold text-center">
-            Times of change
-          </p>
+          {/* your last change was made container */}
           <div className="bg-white overflow-scroll text-left rounded-xl h-[250px] aspect-square relative z-10">
             <div className="py-5 text-center relative">
               <p className="py-2 text-gray-600">
@@ -135,7 +139,7 @@ const Hooks = () => {
             </button>
           </div>
         </div>
-        <div className="h-full w-[645px] bg-gray-400 absolute right-0 -top-5 opacity-75 z-0"></div>
+        <div data-aos="fade-left" data-aos-offset="500" data-aos-once="false" data-aos-delay="200" data-aos-duration="500" className="h-full w-[645px] bg-gray-400 absolute right-0 -top-5 opacity-75 z-0"></div>
       </div>
     </div>
   );
