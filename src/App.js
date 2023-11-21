@@ -13,11 +13,17 @@ import StringMethod from "./components/shared/StringMethod";
 import ArrayMethod from "./components/shared/ArrayMethod";
 import Animation from "./components/shared/animation/Animation";
 import MotionFrame from "./components/shared/animation/MotionFrame";
+import Motion3D from "./components/shared/animation/Motion3D";
 
 
 function App() {
   return (
     <>
+    <div className="w-40 aspect-square bg-green-200 rotate-45 ml-10 mt-10" style={{borderRadius:'50% 0', 
+    boxShadow:'0 0 0 45px #F3AC3C, 0 0 0 65px #OB2429'
+  }}>
+    </div>
+    <Motion3D/>
       <Animation />
     {/* <ArrayMethod/> */}
     {/* <StringMethod /> */}
