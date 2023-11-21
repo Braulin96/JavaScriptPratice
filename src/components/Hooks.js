@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import OpenModal from "./OpenModal";
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // Import the AOS styles
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import the AOS styles
+import { motion, AnimatePresence } from "framer-motion";
 
 // Initialize AOS
 AOS.init();
@@ -82,8 +83,15 @@ const Hooks = () => {
     <div className="flex justify-center py-10">
       <div className="p-20 space-y-5 bg-gray-100 rounded-2xl flex gap-10 w-[900px] overflow-scroll relative items-center justify-around">
         {/* Image loading section */}
-        <div  className="space-y-10 my-auto z-10">
-          <div data-aos="zoom-in" data-aos-offset="500" data-aos-once="false" data-aos-delay="200" data-aos-duration="500" className="border-2 border-gray-600 rounded-full w-72 aspect-square mx-auto flex justify-center items-center overflow-hidden">
+        <div className="space-y-10 my-auto z-10">
+          <div
+            data-aos="zoom-in"
+            data-aos-offset="500"
+            data-aos-once="false"
+            data-aos-delay="200"
+            data-aos-duration="500"
+            className="border-2 border-gray-600 rounded-full w-72 aspect-square mx-auto flex justify-center items-center overflow-hidden"
+          >
             {randomImage && (
               <img
                 className="w-full h-full object-cover"
@@ -113,19 +121,30 @@ const Hooks = () => {
                     }`
                   : "No changes made yet!"}
               </p>
-              <OpenModal
-                className="pt-10 underline"
-                isOpen={isOpen}
-                closeModal={closeModal}
-                title="Complete list"
-                handleOpen={handleOpen}
-                cleanup={<button className="underline" onClick={handleCleaning}>{dateArray.length > 0 ? 'clear':'' } </button>}
-                description={dateArray.map((array, index) => (
-                  <p key={index}>
-                    the change number {index + 1} was made {array}
-                  </p>
-                ))}
-              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 9, delay: 1.5 }}
+                exit={{ x: "-100vh", opacity: 0 }}
+              >
+                <OpenModal
+                  className="pt-10 underline"
+                  isOpen={isOpen}
+                  closeModal={closeModal}
+                  title="Complete list"
+                  handleOpen={handleOpen}
+                  cleanup={
+                    <button className="underline" onClick={handleCleaning}>
+                      {dateArray.length > 0 ? "clear" : ""}{" "}
+                    </button>
+                  }
+                  description={dateArray.map((array, index) => (
+                    <p key={index}>
+                      the change number {index + 1} was made {array}
+                    </p>
+                  ))}
+                />
+              </motion.div>
             </div>
 
             <button
@@ -139,7 +158,14 @@ const Hooks = () => {
             </button>
           </div>
         </div>
-        <div data-aos="fade-left" data-aos-offset="500" data-aos-once="false" data-aos-delay="200" data-aos-duration="500" className="h-full w-[645px] bg-gray-400 absolute right-0 -top-5 opacity-75 z-0"></div>
+        <div
+          data-aos="fade-left"
+          data-aos-offset="500"
+          data-aos-once="false"
+          data-aos-delay="200"
+          data-aos-duration="500"
+          className="h-full w-[645px] bg-gray-400 absolute right-0 -top-5 opacity-75 z-0"
+        ></div>
       </div>
     </div>
   );

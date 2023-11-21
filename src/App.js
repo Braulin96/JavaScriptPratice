@@ -11,7 +11,8 @@ import Layout from "./components/Layout";
 import TestTypeScript from "./components/shared/typeScript/TestTypeScript";
 import StringMethod from "./components/shared/StringMethod";
 import ArrayMethod from "./components/shared/ArrayMethod";
-import Animation from "./components/shared/Animation";
+import Animation from "./components/shared/animation/Animation";
+import MotionFrame from "./components/shared/animation/MotionFrame";
 
 
 function App() {
@@ -25,15 +26,16 @@ function App() {
     {/* <Contexts /> */}
     <MoreHooks />
     <Hooks/>
- 
+    <MotionFrame />
     <Position />
-      <div className="flex flex-wrap p-5 w-full justify-around space-x-4 gap-5">
+      {/* <div className="flex flex-wrap p-5 w-full justify-around space-x-4 gap-5">
         <Buy />
         <Repetition />
         <StylesImages />
       </div>
       <TokenExample />
-      <FlexAndGrid />
+      <FlexAndGrid /> */}
+
 
     
     </>

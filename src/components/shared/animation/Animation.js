@@ -1,5 +1,6 @@
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // Import the AOS styles
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import the AOS styles
+import { motion } from "framer-motion";
 
 // Initialize AOS
 AOS.init();
@@ -7,7 +8,7 @@ AOS.init();
 const Animation = () => {
   return (
     <div className="p-5">
-      <h1>Animation</h1>
+      <h1>Animation with AOS</h1>
       <div className="flex flex-col">
         <label>Button</label>
         <div className="relative w-fit">
@@ -19,9 +20,25 @@ const Animation = () => {
             <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-600"></span>
           </span>
         </div>
-        <div data-aos="fade-right" className="w-20 aspect-square bg-green-400 rounded-sm "> jdjds</div>
-        <div className='bg-red-300 w-20 aspect-square' data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600"></div>
+        <div
+          data-aos="fade-right"
+          className="w-20 aspect-square bg-green-400 rounded-sm "
+        >
+          {" "}
+          jdjds
+        </div>
+        <div
+          className="bg-red-300 w-20 aspect-square"
+          data-aos="fade-zoom-in"
+          data-aos-offset="200"
+          data-aos-easing="ease-in-sine"
+          data-aos-duration="600"
+        ></div>
       </div>
+      <h1>Animation with Motion Framer</h1>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        I have some content in here
+      </motion.div>
     </div>
   );
 };
