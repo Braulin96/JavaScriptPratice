@@ -11,13 +11,15 @@ import Layout from "./components/Layout";
 import TestTypeScript from "./components/shared/typeScript/TestTypeScript";
 import StringMethod from "./components/shared/StringMethod";
 import ArrayMethod from "./components/shared/ArrayMethod";
+import Animation from "./components/shared/Animation";
 
 
 
 function App() {
   return (
     <>
-    <ArrayMethod/>
+    <Animation />
+    {/* <ArrayMethod/> */}
     {/* <StringMethod /> */}
     {/* <TestTypeScript /> */}
     <Layout/>
