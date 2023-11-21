@@ -14,11 +14,10 @@ import ArrayMethod from "./components/shared/ArrayMethod";
 import Animation from "./components/shared/Animation";
 
 
-
 function App() {
   return (
     <>
-    <Animation />
+   
     {/* <ArrayMethod/> */}
     {/* <StringMethod /> */}
     {/* <TestTypeScript /> */}
@@ -26,6 +25,7 @@ function App() {
     {/* <Contexts /> */}
     <MoreHooks />
     <Hooks/>
+    <Animation />
     <Position />
       <div className="flex flex-wrap p-5 w-full justify-around space-x-4 gap-5">
         <Buy />

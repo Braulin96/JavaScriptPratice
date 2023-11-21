@@ -1,3 +1,9 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import the AOS styles
+
+// Initialize AOS
+AOS.init();
+
 const Animation = () => {
   return (
     <div className="p-5">
@@ -13,6 +19,8 @@ const Animation = () => {
             <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-600"></span>
           </span>
         </div>
+        <div data-aos="fade-right" className="w-20 aspect-square bg-green-400 rounded-sm "> jdjds</div>
+        <div data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600"></div>
       </div>
     </div>
   );
