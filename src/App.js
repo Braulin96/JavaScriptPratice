@@ -25,7 +25,7 @@ function App() {
     boxShadow:'0 0 0 45px #F3AC3C, 0 0 0 65px #OB2429'
   }}>
     </div> */}
-    <TestingAPI/>
+    {/* <TestingAPI/> */}
     <HookForm/>
     {/* <Motion3D/>
       <Animation />
