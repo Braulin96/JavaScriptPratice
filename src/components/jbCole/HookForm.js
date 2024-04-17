@@ -7,11 +7,15 @@ const HookForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch
   } = useForm();
   const onSubmit = (data) => {
-    alert(JSON.stringify(data))
+    alert(JSON.stringify(data));
   };
   console.log(errors);
+
+  const watchPassword = watch ('password') //used to monitor the password
+  console.log ('watchPassword:', watchPassword)
 
   return (
     <div className="flex flex-col mt-4 gap-y-6">
@@ -41,7 +45,10 @@ const HookForm = () => {
           } `}
           type="text"
           placeholder="Insert your email..."
-          {...register("email", { required: true, validate: (value) => validator.isEmail (value),})} //check if is a valid email
+          {...register("email", {
+            required: true,
+            validate: (value) => validator.isEmail(value),
+          })} //check if is a valid email
           //when we want an customized validation we use validate and in this case to check email we use validator
         />
         {errors?.email?.type === "required" ? (
@@ -49,7 +56,7 @@ const HookForm = () => {
         ) : (
           ""
         )}
-         {errors?.email?.type === "validate" ? (
+        {errors?.email?.type === "validate" ? (
           <p className="text-sm text-red-400">Email invalid</p>
         ) : (
           ""
@@ -62,7 +69,7 @@ const HookForm = () => {
           className={`outline-none border p-2 rounded-lg w-64 ${
             errors?.password ? "border-red-400" : "border-blue-400 "
           }`}
-          type="text"
+          type="password"
           placeholder="type password..."
           {...register("password", { required: true, minLength: 7 })}
         />
@@ -73,6 +80,33 @@ const HookForm = () => {
         )}
         {errors?.password?.type === "required" ? (
           <p className="text-sm text-red-400">Password is required</p>
+        ) : (
+          ""
+        )}
+      </div>
+
+      <div className="form-group flex flex-col gap-y-2 mx-auto">
+        <label>Confirm Password</label>
+        <input
+          className={`outline-none border p-2 rounded-lg w-64 ${
+            errors?.confirmPassword ? "border-red-400" : "border-blue-400 "
+          }`}
+          type="password"
+          placeholder="type password..."
+          {...register("confirmPassword", { required: true, minLength: 7, validate: (value) => value === watchPassword })}
+        />
+        {errors?.confirmPassword?.type === "validate" ? (
+          <p className="text-sm text-red-400">Password does not match</p>
+        ) : (
+          ""
+        )}
+        {errors?.confirmPassword?.type === "required" ? (
+          <p className="text-sm text-red-400">Password is required</p>
+        ) : (
+          ""
+        )}
+         {errors?.confirmPassword?.type === "minLength" ? (
+          <p className="text-sm text-red-400">At least 7 characters</p>
         ) : (
           ""
         )}
@@ -103,16 +137,15 @@ const HookForm = () => {
 
       <div className="checkbox-group flex flex-col gap-x-2 mx-auto">
         <div className="flex gap-x-2">
-        <input
-          //className="border-blue-400 outline-none border p-2 rounded-lg w-64"
-          type="checkbox"
-          name="privacy-policy"
-          {...register("privacyTerms", { required: true })}
-        />
-        <label> I agree with the privacy terms</label>
-
+          <input
+            //className="border-blue-400 outline-none border p-2 rounded-lg w-64"
+            type="checkbox"
+            name="privacy-policy"
+            {...register("privacyTerms", { required: true })}
+          />
+          <label> I agree with the privacy terms</label>
         </div>
-        
+
         {errors?.privacyTerms?.type === "required" ? (
           <p className="text-sm text-red-400">Agree with terms is required</p>
         ) : (
