@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 
 const HookForm = () => {
-  //we use the register function to register the inputs values.
-  const { register } = useForm();
-  const onSubmit = () => {};
+  //we use the register function to register the inputs values and handleSubmit to validate the values.
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    console.log("data:", data);
+  };
 
   return (
     <div className="flex flex-col mt-4 gap-y-6">
@@ -43,8 +45,8 @@ const HookForm = () => {
           className="border-blue-400 outline-none border p-2 rounded-lg w-64"
         >
           <option value="0">Select your profession</option>
-          <option value="1">Developer</option>
-          <option value="2">Designer</option>
+          <option value="developer">Developer</option>
+          <option value="designer">Designer</option>
         </select>
       </div>
 
@@ -58,11 +60,20 @@ const HookForm = () => {
         <label> I agree with the privacy terms</label>
       </div>
 
-      <button
+      {/* <button
         className="w-fit px-4 py-2 bg-red-500 rounded-lg mx-auto font-semibold"
         onClick={onSubmit}
       >
         Submit
+      </button> */}
+
+      {/* we use handleSubmit will receive as an entry parameter the function we want to execute if the if our form is validate: */}
+
+      <button
+        className="w-fit px-4 py-2 bg-red-500 rounded-lg mx-auto font-semibold"
+        onClick={() => handleSubmit(onSubmit)()}
+      >
+        Create account
       </button>
     </div>
   );
