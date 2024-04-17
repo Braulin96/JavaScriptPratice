@@ -1,22 +1,25 @@
 import { useForm } from "react-hook-form";
 
 const HookForm = () => {
-  //we use the register function to register the inputs values and handleSubmit to validate the values.
-  const { register, handleSubmit } = useForm();
+  //we use the register function to register the inputs values, handleSubmit to validate the values, formState-errors
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
     console.log("data:", data);
   };
+  console.log (errors)
 
   return (
     <div className="flex flex-col mt-4 gap-y-6">
       <div className="form-group flex flex-col gap-y-2 mx-auto">
         <label>Name</label>
         <input
-          className="border-blue-400 outline-none border p-2 rounded-lg w-64"
+          //className="border-blue-400 outline-none border p-2 rounded-lg w-64"
+          className={`outline-none border p-2 rounded-lg w-64 ${ errors?.name ? 'border-red-400' : 'border-blue-400 '}`}
           type="text"
           placeholder="Insert your name..."
-          {...register("name")}
+          {...register("name", {required: true})}
         />
+        { errors?.name?.type === 'required' ? <p className="text-sm text-red-400">Name is required</p> : ''}
       </div>
       <div className="form-group flex flex-col gap-y-2 mx-auto">
         <label>Email</label>
