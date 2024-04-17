@@ -14,26 +14,30 @@ import ArrayMethod from "./components/shared/ArrayMethod";
 import Animation from "./components/shared/animation/Animation";
 import MotionFrame from "./components/shared/animation/MotionFrame";
 import Motion3D from "./components/shared/animation/Motion3D";
+import TestingAPI from "./components/TestingAPI";
+import HookForm from "./components/jbCole/HookForm";
 
 
 function App() {
   return (
     <>
-    <div className="w-40 aspect-square bg-green-200 rotate-45 ml-10 mt-10" style={{borderRadius:'50% 0', 
+    {/* <div className="w-40 aspect-square bg-green-200 rotate-45 ml-10 mt-10" style={{borderRadius:'50% 0', 
     boxShadow:'0 0 0 45px #F3AC3C, 0 0 0 65px #OB2429'
   }}>
-    </div>
-    <Motion3D/>
+    </div> */}
+    <TestingAPI/>
+    <HookForm/>
+    {/* <Motion3D/>
       <Animation />
-    {/* <ArrayMethod/> */}
+    <ArrayMethod/> */}
     {/* <StringMethod /> */}
     {/* <TestTypeScript /> */}
-    <Layout/>
+    {/* <Layout/> */}
     {/* <Contexts /> */}
-    <MoreHooks />
+    {/* <MoreHooks />
     <Hooks/>
     <MotionFrame />
-    <Position />
+    <Position /> */}
       {/* <div className="flex flex-wrap p-5 w-full justify-around space-x-4 gap-5">
         <Buy />
         <Repetition />
