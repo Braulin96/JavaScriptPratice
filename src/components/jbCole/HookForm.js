@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import validator from "validator";
 
 const HookForm = () => {
   //we use the register function to register the inputs values, handleSubmit to validate the values, formState-errors
@@ -40,10 +41,16 @@ const HookForm = () => {
           } `}
           type="text"
           placeholder="Insert your email..."
-          {...register("email", { required: true })}
+          {...register("email", { required: true, validate: (value) => validator.isEmail (value),})} //check if is a valid email
+          //when we want an customized validation we use validate and in this case to check email we use validator
         />
         {errors?.email?.type === "required" ? (
           <p className="text-sm text-red-400">Email is required</p>
+        ) : (
+          ""
+        )}
+         {errors?.email?.type === "validate" ? (
+          <p className="text-sm text-red-400">Email invalid</p>
         ) : (
           ""
         )}
