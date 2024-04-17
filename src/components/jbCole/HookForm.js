@@ -9,7 +9,7 @@ const HookForm = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log("data:", data);
+    alert(JSON.stringify(data))
   };
   console.log(errors);
 
