@@ -17,7 +17,7 @@ const HookForm = () => {
           className={`outline-none border p-2 rounded-lg w-64 ${ errors?.name ? 'border-red-400' : 'border-blue-400 '}`}
           type="text"
           placeholder="Insert your name..."
-          {...register("name", {required: true})}
+          {...register("name", { required: true })}
         />
         { errors?.name?.type === 'required' ? <p className="text-sm text-red-400">Name is required</p> : ''}
       </div>
@@ -27,18 +27,20 @@ const HookForm = () => {
           className="border-blue-400 outline-none border p-2 rounded-lg w-64"
           type="text"
           placeholder="Insert your email..."
-          {...register("email")}
+          {...register("email", { required: true })}
         />
       </div>
 
       <div className="form-group flex flex-col gap-y-2 mx-auto">
         <label>Password</label>
         <input
-          className="border-blue-400 outline-none border p-2 rounded-lg w-64"
+          className={`outline-none border p-2 rounded-lg w-64 ${ errors?.password ? 'border-red-400' : 'border-blue-400 '}`}
           type="text"
           placeholder="type password..."
-          {...register("password")}
+          {...register("password", { required:true, minLength: 7 })}
         />
+           { errors?.password?.type === 'minLength' ? <p className="text-sm text-red-400">At least 7 characters</p> : ''}
+           { errors?.password?.type === 'required' ? <p className="text-sm text-red-400">Password is required</p> : ''}
       </div>
 
       <div className="form-group flex flex-col gap-y-2 mx-auto">
