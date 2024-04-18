@@ -16,6 +16,7 @@ import MotionFrame from "./components/shared/animation/MotionFrame";
 import Motion3D from "./components/shared/animation/Motion3D";
 import TestingAPI from "./components/TestingAPI";
 import HookForm from "./components/jbCole/HookForm";
+import YupValidation from "./components/jbCole/YupValidation";
 
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
   }}>
     </div> */}
     {/* <TestingAPI/> */}
-    <HookForm/>
+    {/* <HookForm/> */}
+    <YupValidation/>
     {/* <Motion3D/>
       <Animation />
     <ArrayMethod/> */}

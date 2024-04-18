@@ -1,20 +1,29 @@
 import { useForm } from "react-hook-form";
-import validator from "validator";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-const HookForm = () => {
-  //we use the register function to register the inputs values, handleSubmit to validate the values, formState-errors
+const schema = yup
+  .object({
+    name: yup.string().required("Name required"),
+    email: yup.string().required("Email required"),
+    password: yup.string().required("Password required"),
+    profession: yup.string().required("Profession required"),
+    age: yup.number().positive().integer().required(),
+  })
+  .required();
+
+const YupValidation = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
-
-  const watchPassword = watch ('password') //used to monitor the password
-  console.log ('watchPassword:', watchPassword)
 
   return (
     <div className="flex flex-col mt-4 gap-y-6">
@@ -29,11 +38,7 @@ const HookForm = () => {
           placeholder="Insert your name..."
           {...register("name", { required: true })}
         />
-        {errors?.name?.type === "required" ? (
-          <p className="text-sm text-red-400">Name is required</p>
-        ) : (
-          ""
-        )}
+        <p>{errors.name?.message}</p>
       </div>
       <div className="form-group flex flex-col gap-y-2 mx-auto">
         <label>Email</label>
@@ -46,20 +51,10 @@ const HookForm = () => {
           placeholder="Insert your email..."
           {...register("email", {
             required: true,
-            validate: (value) => validator.isEmail(value),
-          })} //check if is a valid email
-          //when we want an customized validation we use validate and in this case to check email we use validator
+            //validate: (value) => validator.isEmail(value),
+          })}
         />
-        {errors?.email?.type === "required" ? (
-          <p className="text-sm text-red-400">Email is required</p>
-        ) : (
-          ""
-        )}
-        {errors?.email?.type === "validate" ? (
-          <p className="text-sm text-red-400">Email invalid</p>
-        ) : (
-          ""
-        )}
+         <p>{errors.email?.message}</p>
       </div>
 
       <div className="form-group flex flex-col gap-y-2 mx-auto">
@@ -83,34 +78,6 @@ const HookForm = () => {
           ""
         )}
       </div>
-
-      <div className="form-group flex flex-col gap-y-2 mx-auto">
-        <label>Confirm Password</label>
-        <input
-          className={`outline-none border p-2 rounded-lg w-64 ${
-            errors?.confirmPassword ? "border-red-400" : "border-blue-400 "
-          }`}
-          type="password"
-          placeholder="type password..."
-          {...register("confirmPassword", { required: true, minLength: 7, validate: (value) => value === watchPassword })}
-        />
-        {errors?.confirmPassword?.type === "validate" ? (
-          <p className="text-sm text-red-400">Password does not match</p>
-        ) : (
-          ""
-        )}
-        {errors?.confirmPassword?.type === "required" ? (
-          <p className="text-sm text-red-400">Password is required</p>
-        ) : (
-          ""
-        )}
-         {errors?.confirmPassword?.type === "minLength" ? (
-          <p className="text-sm text-red-400">At least 7 characters</p>
-        ) : (
-          ""
-        )}
-      </div>
-
       <div className="form-group flex flex-col gap-y-2 mx-auto">
         <label>Profession</label>
         <select
@@ -151,18 +118,8 @@ const HookForm = () => {
           ""
         )}
       </div>
-
-      {/* <button
-        className="w-fit px-4 py-2 bg-red-500 rounded-lg mx-auto font-semibold"
-        onClick={onSubmit}
-      >
-        Submit
-      </button> */}
-
-      {/* we use handleSubmit will receive as an entry parameter the function we want to execute if the if our form is validate: */}
-
       <button
-        className="w-fit px-4 py-2 bg-red-500 rounded-lg mx-auto font-semibold"
+        className="w-fit px-4 py-2 bg-blue-500 rounded-lg mx-auto font-semibold"
         onClick={() => handleSubmit(onSubmit)()}
       >
         Create account
@@ -170,4 +127,6 @@ const HookForm = () => {
     </div>
   );
 };
-export default HookForm;
+export default YupValidation;
+
+
