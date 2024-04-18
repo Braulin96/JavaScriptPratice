@@ -7,8 +7,9 @@ const schema = yup
     name: yup.string().required("Name required"),
     email: yup.string().required("Email required"),
     password: yup.string().required("Password required"),
-    profession: yup.string().required("Profession required"),
-    age: yup.number().positive().integer().required(),
+    profession: yup.mixed()
+      .required()
+      .oneOf(["developer", "designer"])
   })
   .required();
 
@@ -67,25 +68,12 @@ const YupValidation = () => {
           placeholder="type password..."
           {...register("password", { required: true, minLength: 7 })}
         />
-        {errors?.password?.type === "minLength" ? (
-          <p className="text-sm text-red-400">At least 7 characters</p>
-        ) : (
-          ""
-        )}
-        {errors?.password?.type === "required" ? (
-          <p className="text-sm text-red-400">Password is required</p>
-        ) : (
-          ""
-        )}
+        <p>{errors.password?.message}</p>
       </div>
       <div className="form-group flex flex-col gap-y-2 mx-auto">
         <label>Profession</label>
         <select
-          {...register("profession", {
-            validate: (value) => {
-              return value !== "0";
-            },
-          })}
+          {...register("profession")}
           className={`outline-none border p-2 rounded-lg w-64 ${
             errors?.profession ? "border-red-400" : "border-blue-400 "
           }`}
@@ -94,11 +82,7 @@ const YupValidation = () => {
           <option value="developer">Developer</option>
           <option value="designer">Designer</option>
         </select>
-        {errors?.profession?.type === "validate" ? (
-          <p className="text-sm text-red-400">Profession is required</p>
-        ) : (
-          ""
-        )}
+        <p>{errors.profession?.message}</p>
       </div>
 
       <div className="checkbox-group flex flex-col gap-x-2 mx-auto">
