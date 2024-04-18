@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 const schema = yup
   .object({
-    name: yup.string().required("Name required"),
+    name: yup.string().required("Name required").min(5, 'Must be at least 5 digits'),
     email: yup.string().required("Email required"),
     password: yup.string().required("Password required"),
     privacyTerms: yup
