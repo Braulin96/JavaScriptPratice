@@ -7,9 +7,11 @@ const schema = yup
     name: yup.string().required("Name required"),
     email: yup.string().required("Email required"),
     password: yup.string().required("Password required"),
-    profession: yup.mixed()
-      .required()
-      .oneOf(["developer", "designer"])
+    privacyTerms: yup
+      .bool()
+      .oneOf([true], "Please accept")
+      .required("Please accept"),
+    profession: yup.mixed().required().oneOf(["developer", "designer"]),
   })
   .required();
 
@@ -55,7 +57,7 @@ const YupValidation = () => {
             //validate: (value) => validator.isEmail(value),
           })}
         />
-         <p>{errors.email?.message}</p>
+        <p>{errors.email?.message}</p>
       </div>
 
       <div className="form-group flex flex-col gap-y-2 mx-auto">
@@ -91,16 +93,11 @@ const YupValidation = () => {
             //className="border-blue-400 outline-none border p-2 rounded-lg w-64"
             type="checkbox"
             name="privacy-policy"
-            {...register("privacyTerms", { required: true })}
+            {...register("privacyTerms")}
           />
           <label> I agree with the privacy terms</label>
         </div>
-
-        {errors?.privacyTerms?.type === "required" ? (
-          <p className="text-sm text-red-400">Agree with terms is required</p>
-        ) : (
-          ""
-        )}
+        <p>{errors?.privacyTerms?.message}</p>
       </div>
       <button
         className="w-fit px-4 py-2 bg-blue-500 rounded-lg mx-auto font-semibold"
@@ -112,5 +109,3 @@ const YupValidation = () => {
   );
 };
 export default YupValidation;
-
-
